@@ -1,4 +1,5 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import axios from "axios"
 
 export default function Feedback() {
 
@@ -6,41 +7,38 @@ export default function Feedback() {
     event.preventDefault();
     const data = new FormData(event.target);
     console.log(Object.fromEntries(data.entries()));
-
-    // console.log((event.target.dataset)); // Reference by form input's `name` tag
-    // console.log(JSON.stringify(data));
-    // console.log((data.get('email'))); // Reference by form input's `name` tag
-
     try {
+  //     const data1={
+  //     "first_name": "qwe",
+  //     "last_name": "uytguy",
+  //     "college": "uguyg",
+  //     "email": "kjn@gmail.com",
+  //     "contact": "8787",
+  //     "radio_set1": "on",
+  //     "radio_set2": "on",
+  //     "radio_set3": "on",
+  //     "radio_set4": "on",
+  //     "radio_set5": "on",
+  //     "about_the_event": "qwe",
+  //     "future_meetup_topics": "qwe",
+  //     "feedback": "qwe"
+  // }
+  // console.log(data1)
       const settings = {
-        method: 'POST',
-        headers: {
-            // Accept: 'application/json',
-            'Content-Type': 'application/json',
-            
-        },
         mode:'no-cors',
-        body:JSON.stringify({
-          "first_name": "qwe",
-          "last_name": "uytguy",
-          "College": "uguyg",
-          "email": "kjn@gmail.com",
-          "contact": "8787",
-          "radio_set1": "on",
-          "radio_set2": "on",
-          "radio_set3": "on",
-          "radio_set4": "on",
-          "radio_set5": "on",
-          "about_the_event": "qwe",
-          "Future_meetup_topics": "qwe",
-          "feedback": "qwe"
-      })
-        // data:JSON.stringify(data)
+        headers: {
+            // 'Accept': 'application/json',
+            // 'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*',
+            // "Access-Control-Allow-Credentials":"true"
+        },
+        
+        // body:JSON.stringify(data)
     };
-    await fetch('http://127.0.0.1:8002/savedetails',settings)
-    .then((response) => response.json())
-    .then(json => console.log(json))
-    .catch(error => console.log('Authorization failed : ' + error.message));
+    // axios.post('https://jsonplaceholder.typicode.com/posts')
+    axios.post('http://127.0.0.1:8002/savedetails',data,settings)
+    .then((response) => console.log(response))
+    .catch(error => console.log('err failed : ' + error.message));
   }catch (error) {
     console.error('Error:', error);
   }
@@ -94,13 +92,13 @@ export default function Feedback() {
               </div>
             </div>
             <div className="col-span-full">
-              <label htmlFor="College" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="college" className="block text-sm font-medium leading-6 text-gray-900">
                 College / Company
               </label>
               <div className="mt-2">
                 <textarea
-                  id="College"
-                  name="College"
+                  id="college"
+                  name="college"
                   rows={1}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   defaultValue={''}
@@ -132,7 +130,8 @@ export default function Feedback() {
                   id="contact"
                   name="contact"
                   type="number"
-                  autoComplete="contact-no"
+                  autoComplete="contact-no" 
+                  required 
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -233,56 +232,58 @@ export default function Feedback() {
               <div className="mt-6 space-y-6">
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="Venue_Excellent"
+                    id="Event_Excellent"
                     name="radio_set1"
                     type="radio"
+                    value="Event_Excellent"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="Venue_Excellent" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="Event_Excellent" className="block text-sm font-medium leading-6 text-gray-900">
                     Excellent
                   </label>
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="Venue_Good"
+                    id="Event_Good"
                     name="radio_set1"
                     type="radio"
+                    value="Event_Good"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="Venue_Good" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="Event_Good" className="block text-sm font-medium leading-6 text-gray-900">
                     Good
                   </label>
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="Venue_Average"
+                    id="Event_Average"
                     name="radio_set1"
-                    type="radio"
+                    type="radio" value="Event_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="Venue_Average" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="Event_Average" className="block text-sm font-medium leading-6 text-gray-900">
                     Average
                   </label>
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="Venue_Bad"
+                    id="Event_Bad"
                     name="radio_set1"
-                    type="radio"
+                    type="radio" value="Event_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="Venue_Bad" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="Event_Bad" className="block text-sm font-medium leading-6 text-gray-900">
                     Bad
                   </label>
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="Venue_Too_bad"
+                    id="Event_Too_bad"
                     name="radio_set1"
-                    type="radio"
+                    type="radio" value="Event_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="Venue_Too_bad" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="Event_Too_bad" className="block text-sm font-medium leading-6 text-gray-900">
                     Too-bad
                   </label>
                 </div>
@@ -297,7 +298,7 @@ export default function Feedback() {
                   <input
                     id="Venue_Excellent"
                     name="radio_set2"
-                    type="radio"
+                    type="radio" value="Venue_Excellent"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Venue_Excellent" className="block text-sm font-medium leading-6 text-gray-900">
@@ -308,7 +309,7 @@ export default function Feedback() {
                   <input
                     id="Venue_Good"
                     name="radio_set2"
-                    type="radio"
+                    type="radio" value="Venue_Good"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Venue_Good" className="block text-sm font-medium leading-6 text-gray-900">
@@ -319,7 +320,7 @@ export default function Feedback() {
                   <input
                     id="Venue_Average"
                     name="radio_set2"
-                    type="radio"
+                    type="radio" value="Venue_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Venue_Average" className="block text-sm font-medium leading-6 text-gray-900">
@@ -330,7 +331,7 @@ export default function Feedback() {
                   <input
                     id="Venue_Bad"
                     name="radio_set2"
-                    type="radio"
+                    type="radio" value="Venue_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Venue_Bad" className="block text-sm font-medium leading-6 text-gray-900">
@@ -341,7 +342,7 @@ export default function Feedback() {
                   <input
                     id="Venue_Too_bad"
                     name="radio_set2"
-                    type="radio"
+                    type="radio" value="Venue_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Venue_Too_bad" className="block text-sm font-medium leading-6 text-gray-900">
@@ -360,7 +361,7 @@ export default function Feedback() {
                   <input
                     id="Content_Excellent"
                     name="radio_set3"
-                    type="radio"
+                    type="radio" value="Content_Excellent"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Content_Excellent" className="block text-sm font-medium leading-6 text-gray-900">
@@ -371,7 +372,7 @@ export default function Feedback() {
                   <input
                     id="Content_Good"
                     name="radio_set3"
-                    type="radio"
+                    type="radio" value="Content_Excellent"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Content_Good" className="block text-sm font-medium leading-6 text-gray-900">
@@ -382,7 +383,7 @@ export default function Feedback() {
                   <input
                     id="Content_Average"
                     name="radio_set3"
-                    type="radio"
+                    type="radio" value="Content_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Content_Average" className="block text-sm font-medium leading-6 text-gray-900">
@@ -393,7 +394,7 @@ export default function Feedback() {
                   <input
                     id="Content_Bad"
                     name="radio_set3"
-                    type="radio"
+                    type="radio" value="Content_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Content_Bad" className="block text-sm font-medium leading-6 text-gray-900">
@@ -404,7 +405,7 @@ export default function Feedback() {
                   <input
                     id="Content_Too_bad"
                     name="radio_set3"
-                    type="radio"
+                    type="radio" value="Content_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Content_Too_bad" className="block text-sm font-medium leading-6 text-gray-900">
@@ -422,7 +423,7 @@ export default function Feedback() {
                   <input
                     id="Food_Excellent"
                     name="radio_set4"
-                    type="radio"
+                    type="radio" value="Food_Excellent"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Food_Excellent" className="block text-sm font-medium leading-6 text-gray-900">
@@ -433,7 +434,7 @@ export default function Feedback() {
                   <input
                     id="Food_Good"
                     name="radio_set4"
-                    type="radio"
+                    type="radio" value="Food_Good"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Food_Good" className="block text-sm font-medium leading-6 text-gray-900">
@@ -444,7 +445,7 @@ export default function Feedback() {
                   <input
                     id="Food_Average"
                     name="radio_set4"
-                    type="radio"
+                    type="radio" value="Food_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Food_Average" className="block text-sm font-medium leading-6 text-gray-900">
@@ -455,7 +456,7 @@ export default function Feedback() {
                   <input
                     id="Food_Bad"
                     name="radio_set4"
-                    type="radio"
+                    type="radio" value="Food_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Food_Bad" className="block text-sm font-medium leading-6 text-gray-900">
@@ -466,7 +467,7 @@ export default function Feedback() {
                   <input
                     id="Food_Too_bad"
                     name="radio_set4"
-                    type="radio"
+                    type="radio" value="Food_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Food_Too_bad" className="block text-sm font-medium leading-6 text-gray-900">
@@ -484,7 +485,7 @@ export default function Feedback() {
                   <input
                     id="Speakers_Excellent"
                     name="radio_set5"
-                    type="radio"
+                    type="radio" value="Speakers_Excellent"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Speakers_Excellent" className="block text-sm font-medium leading-6 text-gray-900">
@@ -495,7 +496,7 @@ export default function Feedback() {
                   <input
                     id="Speakers_Good"
                     name="radio_set5"
-                    type="radio"
+                    type="radio" value="Speakers_Good"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Speakers_Good" className="block text-sm font-medium leading-6 text-gray-900">
@@ -506,7 +507,7 @@ export default function Feedback() {
                   <input
                     id="Speakers_Average"
                     name="radio_set5"
-                    type="radio"
+                    type="radio" value="Speakers_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Speakers_Average" className="block text-sm font-medium leading-6 text-gray-900">
@@ -517,7 +518,7 @@ export default function Feedback() {
                   <input
                     id="Speakers_Bad"
                     name="radio_set5"
-                    type="radio"
+                    type="radio" value="Speakers_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Speakers_Bad" className="block text-sm font-medium leading-6 text-gray-900">
@@ -528,7 +529,7 @@ export default function Feedback() {
                   <input
                     id="Speakers_Too_bad"
                     name="radio_set5"
-                    type="radio"
+                    type="radio" value="Speakers_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="Speakers_Too_bad" className="block text-sm font-medium leading-6 text-gray-900">
@@ -553,13 +554,13 @@ export default function Feedback() {
               {/* <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p> */}
             </div>
             <div className="col-span-full">
-              <label htmlFor="Future_meetup_topics" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="future_meetup_topics" className="block text-sm font-medium leading-6 text-gray-900">
               Future meetup topics that you would love to attend?
               </label>
               <div className="mt-2">
                 <textarea
-                  id="Future_meetup_topics"
-                  name="Future_meetup_topics"
+                  id="future_meetup_topics"
+                  name="future_meetup_topics"
                   rows={3}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   defaultValue={''}
