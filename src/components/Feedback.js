@@ -1,128 +1,158 @@
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import axios from "axios";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
 
 export default function Feedback() {
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const data1 = Object.fromEntries(data.entries());
+    try {
+      //     const data1={
+      //     "first_name": "qwe",
+      //     "last_name": "uytguy",
+      //     "college": "uguyg",
+      //     "email": "kjn@gmail.com",
+      //     "contact": "8787",
+      //     "How satisfied were you with the event?": "on",
+      //     "How satisfied were you with the Venue & Ambience?": "on",
+      //     "How satisfied were you with the Content?": "on",
+      //     "How satisfied were you with the Food & Refeshments?": "on",
+      //     "How satisfied were you with the Speakers?": "on",
+      //     "about_the_event": "qwe",
+      //     "future_meetup_topics": "qwe",
+      //     "feedback": "qwe"
+      // }
+      // console.log(data1)
+      const settings = {
+        mode: "no-cors",
+        headers: {
+          // 'Accept': 'application/json',
+          // 'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          // "Access-Control-Allow-Credentials":"true"
+        },
+
+        // body:JSON.stringify(data)
+      };
+      // axios.post("https://jsonplaceholder.typicode.com/posts");
+      axios
+        .post("http://127.0.0.1:9001/savedetails", data1, settings)
+        .then((response) => console.log(response))
+        .catch((error) => console.log("err failed : " + error.message));
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    <div
+      id="toast-simple"
+      class="flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x divide-gray-200 rounded-lg shadow dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
+      role="alert"
+    >
+      <svg
+        class="w-5 h-5 text-blue-600 dark:text-blue-500 rotate-45"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 18 20"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"
+        />
+      </svg>
+      <div class="pl-4 text-sm font-normal">Message sent successfully.</div>
+    </div>;
+  }
+
   return (
-    <form>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          {/* <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2> */}
+          {/* <p className="mt-1 text-sm leading-6 text-gray-600">
             This information will be displayed publicly so be careful what you share.
-          </p>
+          </p> */}
 
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-4">
-              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                Username
-              </label>
-              <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span>
-                  <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    autoComplete="username"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="janesmith"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">
-                About
-              </label>
-              <div className="mt-2">
-                <textarea
-                  id="about"
-                  name="about"
-                  rows={3}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={''}
-                />
-              </div>
-              <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
-                Photo
-              </label>
-              <div className="mt-2 flex items-center gap-x-3">
-                <UserCircleIcon className="h-12 w-12 text-gray-300" aria-hidden="true" />
-                <button
-                  type="button"
-                  className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                >
-                  Change
-                </button>
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
-                Cover photo
-              </label>
-              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                <div className="text-center">
-                  <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-                  <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                    <label
-                      htmlFor="file-upload"
-                      className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                    >
-                      <span>Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" className="sr-only" />
-                    </label>
-                    <p className="pl-1">or drag and drop</p>
-                  </div>
-                  <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"></div>
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+          <h2 className="text-base font-semibold leading-7 text-gray-900"></h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600"></p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
-              <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
-                First name
+              <label
+                htmlFor="first_name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                First name*
               </label>
               <div className="mt-2">
                 <input
                   type="text"
-                  name="first-name"
-                  id="first-name"
+                  name="first_name"
+                  id="first_name"
                   autoComplete="given-name"
+                  required={true}
+                  defaultValue={""}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="last_name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Last name
               </label>
               <div className="mt-2">
                 <input
                   type="text"
-                  name="last-name"
-                  id="last-name"
+                  name="last_name"
+                  id="last_name"
                   autoComplete="family-name"
+                  defaultValue={""}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
+            <div className="col-span-full">
+              <label
+                htmlFor="college"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                College / Company
+              </label>
+              <div className="mt-2">
+                <textarea
+                  id="college"
+                  name="college"
+                  rows={1}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                />
+              </div>
+              {/* <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p> */}
+            </div>
 
             <div className="sm:col-span-4">
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Email address*
               </label>
               <div className="mt-2">
                 <input
@@ -130,12 +160,33 @@ export default function Feedback() {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  required={true}
+                  defaultValue={""}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="contact"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Contact number *
+              </label>
+              <div className="mt-2">
+                <input
+                  id="contact"
+                  name="contact"
+                  type="number"
+                  autoComplete="contact-no"
+                  required={true}
+                  defaultValue={"1223342"}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
-            <div className="sm:col-span-3">
+            {/* <div className="sm:col-span-3">
               <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
                 Country
               </label>
@@ -151,78 +202,21 @@ export default function Feedback() {
                   <option>Mexico</option>
                 </select>
               </div>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-                Street address
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="street-address"
-                  id="street-address"
-                  autoComplete="street-address"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2 sm:col-start-1">
-              <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                City
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  autoComplete="address-level2"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
-                State / Province
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="region"
-                  id="region"
-                  autoComplete="address-level1"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
-                ZIP / Postal code
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="postal-code"
-                  id="postal-code"
-                  autoComplete="postal-code"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">
+            About the event
+          </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            We'll always let you know about important changes, but you pick what else you want to hear about.
+            We'd love to hear the feedback about this event. Your honest
+            feedback will help us improve ourselves.
           </p>
 
           <div className="mt-10 space-y-10">
-            <fieldset>
+            {/* <fieldset>
               <legend className="text-sm font-semibold leading-6 text-gray-900">By Email</legend>
               <div className="mt-6 space-y-6">
                 <div className="relative flex gap-x-3">
@@ -274,52 +268,496 @@ export default function Feedback() {
                   </div>
                 </div>
               </div>
-            </fieldset>
+            </fieldset> */}
             <fieldset>
-              <legend className="text-sm font-semibold leading-6 text-gray-900">Push Notifications</legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">These are delivered via SMS to your mobile phone.</p>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">
+                How satisfied were you with the event?
+              </legend>
+              {/* <p className="mt-1 text-sm leading-6 text-gray-600">1 = Very dissatisfied   5 = Very satisfied</p> */}
               <div className="mt-6 space-y-6">
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="push-everything"
-                    name="push-notifications"
+                    id="Event_Excellent"
+                    name="How satisfied were you with the event?"
                     type="radio"
+                    value="Event_Excellent"
+                    defaultValue={"radio"}
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="push-everything" className="block text-sm font-medium leading-6 text-gray-900">
-                    Everything
+                  <label
+                    htmlFor="Event_Excellent"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Excellent
                   </label>
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="push-email"
-                    name="push-notifications"
+                    id="Event_Good"
+                    name="How satisfied were you with the event?"
                     type="radio"
+                    value="Event_Good"
+                    defaultValue={"radio"}
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="push-email" className="block text-sm font-medium leading-6 text-gray-900">
-                    Same as email
+                  <label
+                    htmlFor="Event_Good"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Good
                   </label>
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="push-nothing"
-                    name="push-notifications"
+                    id="Event_Average"
+                    name="How satisfied were you with the event?"
                     type="radio"
+                    value="Event_Average"
+                    defaultValue={"radio"}
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="push-nothing" className="block text-sm font-medium leading-6 text-gray-900">
-                    No push notifications
+                  <label
+                    htmlFor="Event_Average"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Average
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Event_Bad"
+                    name="How satisfied were you with the event?"
+                    type="radio"
+                    value="Event_Bad"
+                    defaultValue={"radio"}
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Event_Bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Bad
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Event_Too_bad"
+                    name="How satisfied were you with the event?"
+                    type="radio"
+                    value="Event_Too_bad"
+                    defaultValue={"radio"}
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Event_Too_bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Too-bad
                   </label>
                 </div>
               </div>
             </fieldset>
+            <fieldset>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">
+                How satisfied were you with the Venue & Ambience?
+              </legend>
+              {/* <p className="mt-1 text-sm leading-6 text-gray-600">1 = Very dissatisfied   5 = Very satisfied</p> */}
+              <div className="mt-6 space-y-6">
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Venue_Excellent"
+                    name="How satisfied were you with the Venue & Ambience?"
+                    type="radio"
+                    value="Venue_Excellent"
+                    defaultValue={"radio"}
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Venue_Excellent"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Excellent
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Venue_Good"
+                    name="How satisfied were you with the Venue & Ambience?"
+                    type="radio"
+                    value="Venue_Good"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Venue_Good"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Good
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Venue_Average"
+                    name="How satisfied were you with the Venue & Ambience?"
+                    type="radio"
+                    value="Venue_Average"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Venue_Average"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Average
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Venue_Bad"
+                    name="How satisfied were you with the Venue & Ambience?"
+                    type="radio"
+                    value="Venue_Bad"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Venue_Bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Bad
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Venue_Too_bad"
+                    name="How satisfied were you with the Venue & Ambience?"
+                    type="radio"
+                    value="Venue_Too_bad"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Venue_Too_bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Too-bad
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">
+                How satisfied were you with the Content?
+              </legend>
+              {/* <p className="mt-1 text-sm leading-6 text-gray-600">1 = Very dissatisfied   5 = Very satisfied</p> */}
+              <div className="mt-6 space-y-6">
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Content_Excellent"
+                    name="How satisfied were you with the Content?"
+                    type="radio"
+                    value="Content_Excellent"
+                    defaultValue={"radio"}
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Content_Excellent"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Excellent
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Content_Good"
+                    name="How satisfied were you with the Content?"
+                    type="radio"
+                    value="Content_Excellent"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Content_Good"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Good
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Content_Average"
+                    name="How satisfied were you with the Content?"
+                    type="radio"
+                    value="Content_Average"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Content_Average"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Average
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Content_Bad"
+                    name="How satisfied were you with the Content?"
+                    type="radio"
+                    value="Content_Bad"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Content_Bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Bad
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Content_Too_bad"
+                    name="How satisfied were you with the Content?"
+                    type="radio"
+                    value="Content_Too_bad"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Content_Too_bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Too-bad
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">
+                How satisfied were you with the Food & Refeshments?
+              </legend>
+              {/* <p className="mt-1 text-sm leading-6 text-gray-600">1 = Very dissatisfied   5 = Very satisfied</p> */}
+              <div className="mt-6 space-y-6">
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Food_Excellent"
+                    name="How satisfied were you with the Food & Refeshments?"
+                    type="radio"
+                    value="Food_Excellent"
+                    defaultValue={"radio"}
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Food_Excellent"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Excellent
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Food_Good"
+                    name="How satisfied were you with the Food & Refeshments?"
+                    type="radio"
+                    value="Food_Good"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Food_Good"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Good
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Food_Average"
+                    name="How satisfied were you with the Food & Refeshments?"
+                    type="radio"
+                    value="Food_Average"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Food_Average"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Average
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Food_Bad"
+                    name="How satisfied were you with the Food & Refeshments?"
+                    type="radio"
+                    value="Food_Bad"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Food_Bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Bad
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Food_Too_bad"
+                    name="How satisfied were you with the Food & Refeshments?"
+                    type="radio"
+                    value="Food_Too_bad"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Food_Too_bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Too-bad
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">
+                How satisfied were you with the Speakers?
+              </legend>
+              {/* <p className="mt-1 text-sm leading-6 text-gray-600">1 = Very dissatisfied   5 = Very satisfied</p> */}
+              <div className="mt-6 space-y-6">
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Speakers_Excellent"
+                    name="How satisfied were you with the Speakers?"
+                    type="radio"
+                    value="Speakers_Excellent"
+                    defaultValue={"radio"}
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Speakers_Excellent"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Excellent
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Speakers_Good"
+                    name="How satisfied were you with the Speakers?"
+                    type="radio"
+                    value="Speakers_Good"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Speakers_Good"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Good
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Speakers_Average"
+                    name="How satisfied were you with the Speakers?"
+                    type="radio"
+                    value="Speakers_Average"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Speakers_Average"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Average
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Speakers_Bad"
+                    name="How satisfied were you with the Speakers?"
+                    type="radio"
+                    value="Speakers_Bad"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Speakers_Bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Bad
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-3">
+                  <input
+                    id="Speakers_Too_bad"
+                    name="How satisfied were you with the Speakers?"
+                    type="radio"
+                    value="Speakers_Too_bad"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                  <label
+                    htmlFor="Speakers_Too_bad"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Too-bad
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <div className="col-span-full">
+              <label
+                htmlFor="about_the_event"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                What did you like the most in the event?
+              </label>
+              <div className="mt-2">
+                <textarea
+                  id="about_the_event"
+                  name="about_the_event"
+                  rows={3}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                />
+              </div>
+              {/* <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p> */}
+            </div>
+            <div className="col-span-full">
+              <label
+                htmlFor="future_meetup_topics"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Future meetup topics that you would love to attend?
+              </label>
+              <div className="mt-2">
+                <textarea
+                  id="future_meetup_topics"
+                  name="future_meetup_topics"
+                  rows={3}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                />
+              </div>
+              {/* <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p> */}
+            </div>
+            <div className="col-span-full">
+              <label
+                htmlFor="feedback"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                How could we improve ourselves? & Any additional comments
+                regarding the sessions or overall agenda?
+              </label>
+              <div className="mt-2">
+                <textarea
+                  id="feedback"
+                  name="feedback"
+                  rows={3}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                />
+              </div>
+              {/* <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p> */}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+        <button
+          type="button"
+          className="text-sm font-semibold leading-6 text-gray-900"
+        >
           Cancel
         </button>
         <button
@@ -330,5 +768,5 @@ export default function Feedback() {
         </button>
       </div>
     </form>
-  )
+  );
 }

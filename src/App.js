@@ -23,27 +23,32 @@
 // }
 
 // export default App;
-// App.js 
+// App.js
 
-import './index.css'; 
-import Feedback from './components/Feedback'; 
-import Banner from './components/Banner'; 
+import "./index.css";
+import Feedback from "./components/Feedback";
+import Banner from "./components/Banner";
 function handleSubmit(event) {
   event.preventDefault();
 
   const data = new FormData(event.target);
 
-  const value = data.get('username');
+  const value = data.get("username");
 
   console.log({ value });
 }
-function App() { 
-return ( 
-	<div className="App"> 
-	{/* <Banner/>  */}
-	<Feedback/> 
-	</div> 
-); 
-} 
+function App() {
+  return (
+    <div className="App">
+      <Banner />
+      {/* <style>
+        {
+          "body { background: linear-gradient(to bottom, #fefcea 0%,#f1da36 150%); }"
+        }
+      </style> */}
+      <Feedback />
+    </div>
+  );
+}
 
-export default App; 
+export default App;
