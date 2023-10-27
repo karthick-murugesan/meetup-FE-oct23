@@ -20,11 +20,11 @@ export default function Feedback() {
       //     "college": "uguyg",
       //     "email": "kjn@gmail.com",
       //     "contact": "8787",
-      //     "How satisfied were you with the event?": "on",
-      //     "How satisfied were you with the Venue & Ambience?": "on",
-      //     "How satisfied were you with the Content?": "on",
-      //     "How satisfied were you with the Food & Refeshments?": "on",
-      //     "How satisfied were you with the Speakers?": "on",
+      //     "radio_set1": "on",
+      //     "radio_set2": "on",
+      //     "radio_set3": "on",
+      //     "radio_set4": "on",
+      //     "radio_set5": "on",
       //     "about_the_event": "qwe",
       //     "future_meetup_topics": "qwe",
       //     "feedback": "qwe"
@@ -278,7 +278,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Event_Excellent"
-                    name="How satisfied were you with the event?"
+                    name="radio_set1"
                     type="radio"
                     value="Event_Excellent"
                     defaultValue={"radio"}
@@ -294,7 +294,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Event_Good"
-                    name="How satisfied were you with the event?"
+                    name="radio_set1"
                     type="radio"
                     value="Event_Good"
                     defaultValue={"radio"}
@@ -310,7 +310,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Event_Average"
-                    name="How satisfied were you with the event?"
+                    name="radio_set1"
                     type="radio"
                     value="Event_Average"
                     defaultValue={"radio"}
@@ -326,7 +326,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Event_Bad"
-                    name="How satisfied were you with the event?"
+                    name="radio_set1"
                     type="radio"
                     value="Event_Bad"
                     defaultValue={"radio"}
@@ -342,7 +342,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Event_Too_bad"
-                    name="How satisfied were you with the event?"
+                    name="radio_set1"
                     type="radio"
                     value="Event_Too_bad"
                     defaultValue={"radio"}
@@ -366,7 +366,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Venue_Excellent"
-                    name="How satisfied were you with the Venue & Ambience?"
+                    name="radio_set2"
                     type="radio"
                     value="Venue_Excellent"
                     defaultValue={"radio"}
@@ -382,7 +382,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Venue_Good"
-                    name="How satisfied were you with the Venue & Ambience?"
+                    name="radio_set2"
                     type="radio"
                     value="Venue_Good"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -397,7 +397,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Venue_Average"
-                    name="How satisfied were you with the Venue & Ambience?"
+                    name="radio_set2"
                     type="radio"
                     value="Venue_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -412,7 +412,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Venue_Bad"
-                    name="How satisfied were you with the Venue & Ambience?"
+                    name="radio_set2"
                     type="radio"
                     value="Venue_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -427,7 +427,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Venue_Too_bad"
-                    name="How satisfied were you with the Venue & Ambience?"
+                    name="radio_set2"
                     type="radio"
                     value="Venue_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -451,7 +451,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Content_Excellent"
-                    name="How satisfied were you with the Content?"
+                    name="radio_set3"
                     type="radio"
                     value="Content_Excellent"
                     defaultValue={"radio"}
@@ -467,7 +467,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Content_Good"
-                    name="How satisfied were you with the Content?"
+                    name="radio_set3"
                     type="radio"
                     value="Content_Excellent"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -482,7 +482,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Content_Average"
-                    name="How satisfied were you with the Content?"
+                    name="radio_set3"
                     type="radio"
                     value="Content_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -497,7 +497,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Content_Bad"
-                    name="How satisfied were you with the Content?"
+                    name="radio_set3"
                     type="radio"
                     value="Content_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -512,7 +512,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Content_Too_bad"
-                    name="How satisfied were you with the Content?"
+                    name="radio_set3"
                     type="radio"
                     value="Content_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -535,7 +535,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Food_Excellent"
-                    name="How satisfied were you with the Food & Refeshments?"
+                    name="radio_set4"
                     type="radio"
                     value="Food_Excellent"
                     defaultValue={"radio"}
@@ -551,7 +551,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Food_Good"
-                    name="How satisfied were you with the Food & Refeshments?"
+                    name="radio_set4"
                     type="radio"
                     value="Food_Good"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -566,7 +566,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Food_Average"
-                    name="How satisfied were you with the Food & Refeshments?"
+                    name="radio_set4"
                     type="radio"
                     value="Food_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -581,7 +581,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Food_Bad"
-                    name="How satisfied were you with the Food & Refeshments?"
+                    name="radio_set4"
                     type="radio"
                     value="Food_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -596,7 +596,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Food_Too_bad"
-                    name="How satisfied were you with the Food & Refeshments?"
+                    name="radio_set4"
                     type="radio"
                     value="Food_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -619,7 +619,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Speakers_Excellent"
-                    name="How satisfied were you with the Speakers?"
+                    name="radio_set5"
                     type="radio"
                     value="Speakers_Excellent"
                     defaultValue={"radio"}
@@ -635,7 +635,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Speakers_Good"
-                    name="How satisfied were you with the Speakers?"
+                    name="radio_set5"
                     type="radio"
                     value="Speakers_Good"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -650,7 +650,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Speakers_Average"
-                    name="How satisfied were you with the Speakers?"
+                    name="radio_set5"
                     type="radio"
                     value="Speakers_Average"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -665,7 +665,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Speakers_Bad"
-                    name="How satisfied were you with the Speakers?"
+                    name="radio_set5"
                     type="radio"
                     value="Speakers_Bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -680,7 +680,7 @@ export default function Feedback() {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="Speakers_Too_bad"
-                    name="How satisfied were you with the Speakers?"
+                    name="radio_set5"
                     type="radio"
                     value="Speakers_Too_bad"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
